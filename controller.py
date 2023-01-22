@@ -5,11 +5,14 @@ import mod_imp
 import mod_exp
 import edit_db
 
+
 def quit():
     input('Нажмите клавишу для выхода в главное меню: ')
 
 
 path = 'database.csv'
+
+
 def ClickButton():
     data_base = init.init(path)
     while True:
@@ -30,7 +33,8 @@ def ClickButton():
                 print('Not Ok')
             quit()
         elif num_menu == 4:
-            file_name = view.second_menu('Выберите имя экспортируемого файла: ')
+            file_name = view.second_menu(
+                'Выберите имя экспортируемого файла: ')
             mod_exp.unload_file(file_name)
             quit()
         elif num_menu == 5:
@@ -41,7 +45,8 @@ def ClickButton():
             data_base = edit_db.del_cont(data_base, num_user)
             quit()
         elif num_menu == 7:
-            num_user = view.second_menu('Введите строку редактируемого контакта: ')
+            num_user = view.second_menu(
+                'Введите строку редактируемого контакта: ')
             data_base = edit_db.edit_cont(data_base, num_user)
             quit()
         elif num_menu == 8:
@@ -49,14 +54,6 @@ def ClickButton():
         # else:
         #     quit()
 
-    
-
-        
-
-
 
 # def add_contact():
 #     pass
-
-
-
