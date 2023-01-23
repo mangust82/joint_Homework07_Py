@@ -24,7 +24,7 @@ def ClickButton():
             quit()
         elif num_menu == 3:
             path_file = view.second_menu('Выберите файл для импорта: ')
-            if mod_imp.load_file(path_file):
+            if mod_imp.db_update(path_file):
                 print('Ok')
             else:
                 print('Not Ok')
