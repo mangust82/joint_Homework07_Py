@@ -31,4 +31,4 @@ def add_user():
     return user_dict
 
 # вызов меню(тест)
-main_menu()
+# main_menu()
