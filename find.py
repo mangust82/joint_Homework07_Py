@@ -8,6 +8,6 @@ def find_cont(find_str: str, data_base: list) -> list:
     for item in find_data:
         i = data_base.index(item)
         item = list(item.values())
-        print(f'{i:4} | {item[0]:13} | {item[1]:10} | {item[2]:12} | {item[3]}')  
+        print(f'{i:4} | {item[0]:13} | {item[1]:11} | {item[2]:12} | {item[3]}')  
     
 
