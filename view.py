@@ -12,11 +12,11 @@ def main_menu():
 
 def show_database(list_of_dict):
     #pass
-    for idx, el in enumerate(list_of_dict):
+    for idx, man in enumerate(list_of_dict):
 
-        man = list(el.values())
-        print(f'{idx:4}  Фамилия: {man[0]:10} Имя: {man[1]:8} Номер: {man[2]:10} Комментарий: {man[3]: 3}')
-
+        # man = list(el) #убрала валуа, с ним не работает. список списков
+        print(f'{(idx+1):4}  Фамилия: {man[0]:10} Имя: {man[1]:8} Номер: {man[2]:10} Комментарий: {man[3]:3}') # пробкл был нишний
+# добавила {(idx):4} плюс один, тк неправильная опять нумерация была
 
 def second_menu(text):
     a = input(text)
@@ -34,7 +34,7 @@ def show_str(list_of_dict):
     #pass
     print(f'N  Фамилия:        Имя:        Номер:           Комментарий: ')
     for idx, el in enumerate(list_of_dict):
-        man = list(el.values())
+        man = el # не валуа с ним не работает
         print(f'{man[0]}      {man[1]}       {man[2]}         {man[3]}')
 
 # вызов меню(тест)
