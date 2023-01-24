@@ -27,8 +27,15 @@ def add_user():
     L_name = input('Введите фамилию: ')
     phonenum = input('Введите номер телефона: ')
     coment = input('Введите комментарий: ')
-    user_dict = {}
+    user_dict = {'Фамилия': F_name, 'Имя': L_name,'Телефон': phonenum , 'Комментарий': coment}
     return user_dict
+
+def show_str(list_of_dict):
+    #pass
+    print(f'N  Фамилия:        Имя:        Номер:           Комментарий: ')
+    for idx, el in enumerate(list_of_dict):
+        man = list(el.values())
+        print(f'{man[0]}      {man[1]}       {man[2]}         {man[3]}')
 
 # вызов меню(тест)
 # main_menu()

@@ -5,9 +5,18 @@ import mod_imp
 import mod_exp
 import edit_db
 
+def SaveDataBase(name_data_base, data_base):
+    field_names = ['Фамилия', 'Имя', 'Телефон', 'Комментарий']
+    for dataUser in data_base:
+        addList.append(dataUser)
+    with open(name_data_base, 'w', newline='', encoding='UTF-8') as csvfile:
+        writer = csv.DictWriter(
+            csvfile, fieldnames=field_names, quoting=csv.QUOTE_ALL, delimiter=';')
+        for i in addList:
+            writer.writerow(i)
+
 
 path = 'database.csv'
-
 
 def ClickButton():
     data_base = init.init(path)
@@ -46,10 +55,16 @@ def ClickButton():
             mod_exp.unload_file('database.csv', data_base)
 
         elif num_menu == '7':
-            num_user = view.second_menu(
-                'Введите строку редактируемого контакта: ')
-            data_base = edit_db.edit_cont(data_base, num_user)
-            mod_exp.unload_file('database.csv', data_base)
+            edit_user_db = []
+            num_user = int(view.second_menu(
+                'Введите строку редактируемого контакта: '))
+            edit_user_db.append(data_base[num_user])
+            view.show_str(edit_user_db)
+            data_base = edit_db.edit_cont(data_base, view.add_user(), num_user)
+
+            # data_base = edit_db.edit_cont(data_base, num_user)
+            # mod_exp.unload_file('database.csv', data_base)
 
         elif num_menu == '8':
-            data_base = edit_db.edit_cont(data_base, num_user)
+            SaveDataBase('databaseSave.csv', data_base)
+
