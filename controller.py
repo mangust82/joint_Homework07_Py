@@ -4,16 +4,16 @@ import csv  # ( добавила импорт csv тк без него него 
 # и вообще это моя unload_fileфункция)
 
 
-def SaveDataBase(name_data_base, data_base):
-    field_names = ['Фамилия', 'Имя', 'Телефон', 'Комментарий']
-    addList = []
-    for dataUser in data_base:
-        addList.append(dataUser)
-    with open(name_data_base, 'w', newline='', encoding='UTF-8') as csvfile:
-        writer = csv.writer(
-            csvfile, fieldnames=field_names, quoting=csv.QUOTE_ALL, delimiter=';')
-        for i in addList:
-            writer.writerows(i)
+# def SaveDataBase(name_data_base, data_base):
+#     field_names = ['Фамилия', 'Имя', 'Телефон', 'Комментарий']
+#     addList = []
+#     for dataUser in data_base:
+#         addList.append(dataUser)
+#     with open(name_data_base, 'w', newline='', encoding='UTF-8') as csvfile:
+#         writer = csv.writer(
+#             csvfile, fieldnames=field_names, quoting=csv.QUOTE_ALL, delimiter=';')
+#         for i in addList:
+#             writer.writerows(i) "это у нас вообще нигде не используется, закоммитила"
 
 
 path = 'database.csv'

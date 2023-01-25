@@ -6,7 +6,8 @@ def main_menu():
     print('5. Добавить новый контакт (жми 5)  ')
     print('6. Удалить контакт (жми 6)  ')
     print('7. Редактирование контакта (жми 7) ')
-    print('8. Для выхода жми 8 \n')
+    print('8. Для сохранения базы (жми 8) ')
+    print('9. Для выхода нажми "Enter" \n')
     menu = input('Выберите пункт меню: ')
     return menu
 
@@ -33,8 +34,8 @@ def add_user():
 def show_str(list_of_dict):
     #pass
     print(f'N  Фамилия:        Имя:        Номер:           Комментарий: ')
-    for idx, el in enumerate(list_of_dict):
-        man = el # не валуа с ним не работает
+    for idx, man in enumerate(list_of_dict):
+        # man = el # не валуа с ним не работает + закомитила man=el и заработало
         print(f'{man[0]}      {man[1]}       {man[2]}         {man[3]}')
 
 # вызов меню(тест)
