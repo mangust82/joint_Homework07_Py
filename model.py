@@ -1,4 +1,6 @@
 import csv
+# Убрала все функции в этот блок
+
 
 def unload_file(file_name, list_of_dict):
     with open(file_name, 'w', newline='', encoding='UTF-8') as data_base:
