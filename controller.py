@@ -1,19 +1,6 @@
 import view
 import model
-import csv  # ( добавила импорт csv тк без него него не вызывается csv.writer
-# и вообще это моя unload_fileфункция)
-
-
-def SaveDataBase(name_data_base, data_base):
-    field_names = ['Фамилия', 'Имя', 'Телефон', 'Комментарий']
-    addList = []
-    for dataUser in data_base:
-        addList.append(dataUser)
-    with open(name_data_base, 'w', newline='', encoding='UTF-8') as csvfile:
-        writer = csv.writer(
-            csvfile, fieldnames=field_names, quoting=csv.QUOTE_ALL, delimiter=';')
-        for i in addList:
-            writer.writerows(i)
+import idSort
 
 
 path = 'database.csv'
@@ -22,7 +9,6 @@ path = 'database.csv'
 def ClickButton():
     data_base = model.load_file(path)[1]
     while True:
-
         num_menu = view.main_menu()
         if num_menu == '':
             print('Exit')
@@ -33,7 +19,8 @@ def ClickButton():
             find_str = view.second_menu('Введите строку поиска: ')
             model.find_cont(find_str, data_base)
         elif num_menu == '3':
-            path_file = view.second_menu('Выберите файл для импорта: ')
+            path_file = view.second_menu(
+                'Выберите файл для импорта в формате (.\databig.csv или .\datasmall.csv data.txt) : ')
             status, data_base = model.ChangeBase(path_file, data_base)
             if status:
                 print('Файл успешно загружен')
@@ -51,22 +38,20 @@ def ClickButton():
             model.unload_file('database.csv', data_base)
 
         elif num_menu == '6':
-            num_user = int(view.second_menu(
-                'Введите строку удаляемого контакта: '))
-            data_base = model.del_cont(data_base, num_user)
+            num_user = view.inputNumber(
+                f'Введите строку удаляемого контакта от 1 до {len(data_base)}:', len(data_base))
+            model.del_cont(data_base, num_user)
             model.unload_file('database.csv', data_base)
 
         elif num_menu == '7':
-            edit_user_db = []
-            num_user = int(view.second_menu(
-                'Введите строку редактируемого контакта: '))
-            edit_user_db.append(data_base[num_user-1])
-            view.show_str(edit_user_db)
-            data_base = model.edit_cont(data_base, view.add_user(), num_user-1)
-            model.unload_file('database.csv', data_base)
-            # data_base = edit_db.edit_cont(data_base, num_user)
-            # mod_exp.unload_file('database.csv', data_base)
+            data_base = idSort.sortUserId(data_base)
 
         elif num_menu == '8':
-            model.unload_file('databaseSave.csv', data_base)
-# поставила свою функию сюда вместо SaveDataBase и вроде работает,
+            edit_user_db = []
+            num_user = view.inputNumber(
+                f'Введите строку редактируемого контакта от 1 до {len(data_base)}:', len(data_base))
+            edit_user_db.append(data_base[num_user-1])
+            view.show_str(edit_user_db)
+            data_base = model.edit_cont(
+                data_base, view.add_user(), num_user-1)
+            model.unload_file('database.csv', data_base)
