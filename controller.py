@@ -1,10 +1,12 @@
 import view
 import model
-import csv #( добавила импорт csv тк без него него не вызывается csv.writer 
+import csv  # ( добавила импорт csv тк без него него не вызывается csv.writer
 # и вообще это моя unload_fileфункция)
+
+
 def SaveDataBase(name_data_base, data_base):
     field_names = ['Фамилия', 'Имя', 'Телефон', 'Комментарий']
-    addList =[]
+    addList = []
     for dataUser in data_base:
         addList.append(dataUser)
     with open(name_data_base, 'w', newline='', encoding='UTF-8') as csvfile:
@@ -15,6 +17,7 @@ def SaveDataBase(name_data_base, data_base):
 
 
 path = 'database.csv'
+
 
 def ClickButton():
     data_base = model.load_file(path)[1]
@@ -31,7 +34,8 @@ def ClickButton():
             model.find_cont(find_str, data_base)
         elif num_menu == '3':
             path_file = view.second_menu('Выберите файл для импорта: ')
-            if model.db_merge(path_file):
+            status, data_base = model.ChangeBase(path_file, data_base)
+            if status:
                 print('Файл успешно загружен')
             else:
                 print(
@@ -65,5 +69,4 @@ def ClickButton():
 
         elif num_menu == '8':
             model.unload_file('databaseSave.csv', data_base)
-# поставила свою функию сюда вместо SaveDataBase и вроде работает, 
-
+# поставила свою функию сюда вместо SaveDataBase и вроде работает,
